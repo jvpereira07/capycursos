@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,14 @@ import com.capybara.capycursos.modules.user.model.User;
 import com.capybara.capycursos.modules.user.repository.UserRepository;
 
 import lombok.AllArgsConstructor;
-
+@CrossOrigin(
+        origins = {
+                "http://localhost:8081",
+                "http://localhost:3000"
+        },
+        allowedHeaders = "*",
+        allowCredentials = "true"
+)
 @RestController
 @AllArgsConstructor
 public class TokenController {

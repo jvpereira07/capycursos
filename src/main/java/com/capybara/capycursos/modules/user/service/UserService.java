@@ -85,6 +85,7 @@ public class UserService {
                 .password(user.getPassword() != null ? user.getPassword() : userEntity.getPassword())
                 .created_at(userEntity.getCreated_at())
                 .userRoles(userEntity.getUserRoles())
+                .isActive(userEntity.isActive())
                 .build();
         return repo.saveAndFlush(userUpdated);
     }
@@ -105,6 +106,7 @@ public class UserService {
                 .password(user.getPassword() != null ? user.getPassword() : userEntity.getPassword())
                 .created_at(userEntity.getCreated_at())
                 .userRoles(userEntity.getUserRoles())
+                .isActive(userEntity.isActive())
                 .build();
         return repo.saveAndFlush(userUpdated);
     }
