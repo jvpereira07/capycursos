@@ -4,15 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.capybara.capycursos.modules.user.dto.LoginResponse;
 import com.capybara.capycursos.modules.user.dto.UserGetDTO;
@@ -25,7 +17,14 @@ import com.capybara.capycursos.modules.user.service.RoleService;
 import com.capybara.capycursos.modules.user.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-
+@CrossOrigin(
+        origins = {
+                "http://localhost:8081",
+                "http://localhost:3000"
+        },
+        allowedHeaders = "*",
+        allowCredentials = "true"
+)
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -58,7 +57,8 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
     @PreAuthorize("hasAuthority('SCOPE_admin')")
-    @PutMapping ResponseEntity<Void> UpdateUserByEmail(@RequestParam String email, @RequestBody UserSetDTO updatedUser){
+    @PutMapping("/{email}")
+    ResponseEntity<Void> UpdateUserByEmail(@PathVariable String email, @RequestBody UserSetDTO updatedUser){
         userService.updateByEmail(mapper.toEntity(updatedUser),email);
         return ResponseEntity.ok().build();
     }

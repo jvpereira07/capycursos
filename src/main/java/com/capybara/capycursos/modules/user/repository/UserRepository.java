@@ -1,7 +1,7 @@
 package com.capybara.capycursos.modules.user.repository;
 
 import com.capybara.capycursos.modules.user.model.User;
-import com.capybara.capycursos.modules.user.service.UserService;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

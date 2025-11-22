@@ -1,4 +1,4 @@
 package com.capybara.capycursos.modules.user.dto;
 
-public record LoginResponse(String accesToken, Long expiresIn) {
+public record LoginResponse(String accessToken, Long expiresIn) {
 }
