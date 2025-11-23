@@ -38,15 +38,15 @@ public class AdminUserConfig implements CommandLineRunner {
         User userAdmin = userRepository.findByUsername("admin")
                 .orElseGet(
                         () -> {
-                    User user = new User();
-                    user.setUsername(adminUsername);
-                    user.setPassword(passwordEncoder.encode(adminPassword));
-                    user.setEmail(adminEmail);
-                    user.setUserRoles(Set.of(roleAdmin));
-                    user.setCreated_at(LocalDateTime.now());
-                    user.setActive(true);
-                    return userRepository.save(user);
-                });
+                            User user = new User();
+                            user.setUsername(adminUsername);
+                            user.setPassword(passwordEncoder.encode(adminPassword));
+                            user.setEmail(adminEmail);
+                            user.setUserRoles(Set.of(roleAdmin));
+                            user.setCreated_at(LocalDateTime.now());
+                            user.setActive(true);
+                            return userRepository.save(user);
+                        });
 
     }
 

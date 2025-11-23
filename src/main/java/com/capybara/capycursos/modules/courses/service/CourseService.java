@@ -3,6 +3,7 @@ package com.capybara.capycursos.modules.courses.service;
 import java.util.List;
 import java.util.UUID;
 
+import com.capybara.capycursos.modules.courses.model.Module;
 import org.springframework.stereotype.Service;
 
 import com.capybara.capycursos.modules.courses.model.Course;
@@ -37,11 +38,20 @@ public class CourseService {
     public Course UpdateCourse(UUID id, Course course){
         Course courseEntity = getCourse(id);
         Course courseUpdated = Course.builder()
-                .id(course.getId())
+                .id(id)
                 .code(course.getCode() != null ? course.getCode() : courseEntity.getCode())
                 .name(course.getName() != null ? course.getName() : courseEntity.getName())
                 .description(course.getDescription() != null ? course.getDescription() : courseEntity.getDescription())
-                .modules(course.getModules() != null ? course.getModules() : courseEntity.getModules()).build();
+                .build();
+        if (course.getModules() != null) {
+            courseEntity.getModules().clear();
+
+            for (Module module : course.getModules()) {
+                module.setId(null);
+                module.setCourse(courseEntity);
+                courseEntity.getModules().add(module);
+            }
+        }
         return courseRepository.saveAndFlush(courseUpdated);
     }
     public Course UpdateByCode(String code, Course course) {
