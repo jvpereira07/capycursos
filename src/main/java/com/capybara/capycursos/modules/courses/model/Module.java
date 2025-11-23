@@ -28,6 +28,7 @@ public class Module {
     @JoinColumn(name="course", nullable = false)
     private Course course;
     @OneToMany(mappedBy="module")
-    private Set<Class> classes;
+    private Set<VideoClass> videoClasses;
+
 
 }
