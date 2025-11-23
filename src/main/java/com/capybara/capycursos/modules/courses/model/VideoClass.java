@@ -15,6 +15,7 @@ import java.util.UUID;
 @Entity
 @Table(name="video_classes")
 public class VideoClass {
+    @Id
     @GeneratedValue(generator="uuid")
     @GenericGenerator(name="uuid",
             strategy = "org.hibernate.id.UUIDGenerator"

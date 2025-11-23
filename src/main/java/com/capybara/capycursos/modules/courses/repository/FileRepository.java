@@ -1,9 +1,10 @@
 package com.capybara.capycursos.modules.courses.repository;
 
+import com.capybara.capycursos.modules.courses.model.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface File extends JpaRepository<File, UUID> {
+public interface FileRepository extends JpaRepository<File, UUID> {
 
 }

@@ -19,7 +19,7 @@ import com.capybara.capycursos.modules.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 @CrossOrigin(
         origins = {
-                "http://localhost:8081",
+                "http://localhost:19006",
                 "http://localhost:3000"
         },
         allowedHeaders = "*",
@@ -57,8 +57,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
     @PreAuthorize("hasAuthority('SCOPE_admin')")
-    @PutMapping("/{email}")
-    ResponseEntity<Void> UpdateUserByEmail(@PathVariable String email, @RequestBody UserSetDTO updatedUser){
+    @PutMapping ResponseEntity<Void> UpdateUserByEmail(@RequestParam String email, @RequestBody UserSetDTO updatedUser){
         userService.updateByEmail(mapper.toEntity(updatedUser),email);
         return ResponseEntity.ok().build();
     }
