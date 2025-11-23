@@ -105,7 +105,7 @@ public class UserService {
                 .email(user.getEmail() != null ? user.getEmail() : userEntity.getEmail())
                 .password(user.getPassword() != null ? user.getPassword() : userEntity.getPassword())
                 .created_at(userEntity.getCreated_at())
-                .userRoles(userEntity.getUserRoles())
+                .userRoles(user.getUserRoles() != null ? user.getUserRoles() : userEntity.getUserRoles())
                 .isActive(userEntity.isActive())
                 .build();
         return repo.saveAndFlush(userUpdated);

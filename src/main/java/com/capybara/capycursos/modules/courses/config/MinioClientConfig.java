@@ -1,0 +1,15 @@
+package com.capybara.capycursos.modules.courses.config;
+
+import io.minio.MinioClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MinioClientConfig {
+    @Bean
+    MinioClient minioClient(){
+        return MinioClient.builder().endpoint("http://localhost:9001")
+                .credentials("minioadmin", "minioadmin")
+                .build();
+    }
+}
